@@ -33,7 +33,6 @@ use std::path::PathBuf;
 ))]
 use tar::Archive;
 
-
 // Build using pkg-config
 #[cfg(all(
     feature = "pkg_config",
@@ -117,7 +116,6 @@ fn main() {
         .expect("Couldn't write bindings!");
 }
 
-
 // Build from included source
 #[cfg(all(
     not(feature = "pkg-config"),
@@ -143,6 +141,8 @@ fn main() {
     let target = env::var("TARGET").unwrap();
     if target.contains("apple") {
         println!("cargo:rustc-link-lib=dylib=c++");
+    } else if target.contains("linux") {
+        println!("cargo:rustc-link-lib=dylib=stdc++");
     }
     println!("cargo:rustc-link-lib=dylib=sqlite3");
     println!("cargo:rustc-link-lib=dylib=curl");
