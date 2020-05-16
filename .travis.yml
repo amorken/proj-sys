@@ -1,6 +1,13 @@
 language: rust
 
-dist: xenial
+dist: trusty
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-7
+      - g++-7
 
 rust:
   - stable
@@ -22,8 +29,10 @@ jobs:
     - os: linux
       env: PROJ_FEATURES="--features pkg_config"
     - os: osx
+      osx_image: xcode11.4
       env: PROJ_FEATURES="--features pkg_config"
     - os: osx
+      osx_image: xcode11.4
       env: PROJ_FEATURES="--features bundled_proj"
 
 before_install:
@@ -43,6 +52,10 @@ before_install:
     fi
 
 script:
+  - if [ "$TRAVIS_OS_NAME" = "linux" ] && [ "$PROJ_FEATURES" = "bundled_proj" ]; then
+      export CC=gcc-7 ;
+      export CXX=g++-7 ;
+    fi
   - cargo test $PROJ_FEATURES
 
 cache: cargo

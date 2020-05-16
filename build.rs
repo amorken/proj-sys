@@ -141,15 +141,8 @@ fn main() {
 
     // Find and configure required dependencies
     let target = env::var("TARGET").unwrap();
-    if target.contains("linux") {
-        config.define("CMAKE_CXX_COMPILER", "/usr/bin/g++-4.8");
-    }
     if target.contains("apple") {
         println!("cargo:rustc-link-lib=dylib=c++");
-    } else if target.contains("linux") {
-        println!("cargo:rustc-link-lib=dylib=stdc++");
-    } else {
-        unimplemented!();
     }
     println!("cargo:rustc-link-lib=dylib=sqlite3");
     println!("cargo:rustc-link-lib=dylib=curl");
