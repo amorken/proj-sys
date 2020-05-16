@@ -1,6 +1,6 @@
 language: rust
 
-dist: trusty
+dist: xenial
 addons:
   apt:
     sources:
