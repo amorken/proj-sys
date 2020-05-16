@@ -136,6 +136,7 @@ fn main() {
     let mut config = cmake::Config::new("PROJSRC/proj/proj-7.0.1");
     config.pic(true);
     config.define("BUILD_SHARED_LIBS", "OFF");
+    config.define("BUILD_TESTING", "OFF");
     config.define("CMAKE_BUILD_TYPE", "Release");
     config.define("CMAKE_CXX_COMPILER", "g++-7");
     config.define("CMAKE_CXXFLAGS", "GLIBCXX_USE_CXX11_ABI=0");
