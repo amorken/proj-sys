@@ -20,7 +20,7 @@ env:
 jobs:
   include:
     - os: linux
-      env: PROJ_FEATURES="--features bundled_proj" CXX=gcc
+      env: PROJ_FEATURES="--features bundled_proj" CXX=g++
     - os: linux
       env: PROJ_FEATURES="--features pkg_config"
     - os: osx
