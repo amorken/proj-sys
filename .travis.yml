@@ -19,7 +19,7 @@ env:
 jobs:
   include:
     - os: linux
-      env: CC=clang-7 CXX=clang++-7 PROJ_FEATURES="--features bundled_proj"
+      env: CC=clang CXX=clang++ PROJ_FEATURES="--features bundled_proj"
     - os: linux
       env: PROJ_FEATURES="--features pkg_config"
     - os: osx
@@ -31,6 +31,7 @@ jobs:
 
 before_install:
   - which clang
+  - which clang++
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]  && [ "$PROJ_FEATURES" != "--features bundled_proj" ]; then
       sudo apt-get update
