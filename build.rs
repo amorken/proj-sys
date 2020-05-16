@@ -137,7 +137,7 @@ fn main() {
         proj.join("lib").display()
     );
     // Tell cargo to tell rustc to link PROJ.
-    println!("cargo:rustc-link-lib=dylib=proj");
+    println!("cargo:rustc-link-lib=static=proj");
 
     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
     bindgen::builder()
