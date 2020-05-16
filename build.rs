@@ -139,7 +139,8 @@ fn main() {
     config.define("BUILD_TESTING", "OFF");
     config.define("CMAKE_BUILD_TYPE", "Release");
     config.define("CMAKE_CXX_COMPILER", "g++-7");
-    config.define("CMAKE_CXX_FLAGS", "_GLIBCXX_USE_CXX11_ABI=0");
+    config.define("CMAKE_C_FLAGS", "pic");
+    config.define("CMAKE_CXX_FLAGS", "pic");
     // if target.contains("linux") {
     //     config.define("CMAKE_CXX_COMPILER", env::var("CXX").unwrap());
     // }
