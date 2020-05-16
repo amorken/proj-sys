@@ -132,6 +132,7 @@ fn main() {
     let mut archive = Archive::new(tar);
     archive.unpack("PROJSRC/proj").expect("Couldn't unpack tar");
 
+    let target = env::var("TARGET").unwrap();
     let mut config = cmake::Config::new("PROJSRC/proj/proj-7.0.1");
     config.pic(true);
     config.define("BUILD_SHARED_LIBS", "OFF");
@@ -141,7 +142,6 @@ fn main() {
     }
 
     // Find and configure required dependencies
-    let target = env::var("TARGET").unwrap();
     if target.contains("apple") {
         println!("cargo:rustc-link-lib=dylib=c++");
     }
