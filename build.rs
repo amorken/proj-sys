@@ -160,10 +160,9 @@ fn main() {
     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
     bindgen::builder()
         .header(proj.join("include").join("proj.h").to_str().unwrap())
+        .clang_arg("-std=c++11")
         .clang_arg("-x")
         .clang_arg("c++")
-        .clang_arg("-std")
-        .clang_arg("c++11")
         .trust_clang_mangling(false)
         .blacklist_type("max_align_t")
         .generate()
