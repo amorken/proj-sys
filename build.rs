@@ -163,6 +163,7 @@ fn main() {
         .clang_arg("-std=c++11")
         .clang_arg("-x")
         .clang_arg("c++")
+        .trust_clang_mangling(false)
         .blacklist_type("max_align_t")
         .generate()
         .expect("Unable to generate bindings")
