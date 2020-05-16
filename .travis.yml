@@ -24,8 +24,7 @@ jobs:
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
-      env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && PROJ_FEATURES=--features bundled_proj"
+      env: CC=gcc-7 CXX=g++-7 PROJ_FEATURES="--features bundled_proj"
     - os: linux
       env: PROJ_FEATURES="--features pkg_config"
     - os: osx
