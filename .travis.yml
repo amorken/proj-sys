@@ -48,8 +48,8 @@ before_install:
 
 script:
   - if [ "$TRAVIS_OS_NAME" = "linux" ] && [ "$PROJ_FEATURES" = "bundled_proj" ]; then
-      which g++
-      g++ -v
+      which g++ ;
+      g++ -v ;
     fi
   - cargo test $PROJ_FEATURES
 
