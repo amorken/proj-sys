@@ -47,10 +47,7 @@ before_install:
     fi
 
 script:
-  - if [ "$TRAVIS_OS_NAME" = "linux" ] && [ "$PROJ_FEATURES" = "bundled_proj" ]; then
-      which g++ ;
-      g++ -v ;
-    fi
-  - cargo test $PROJ_FEATURES
+  - echo $CXX
+  - cargo test -vv $PROJ_FEATURES
 
 cache: cargo
