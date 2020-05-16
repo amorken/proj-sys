@@ -138,11 +138,12 @@ fn main() {
     config.pic(true);
     config.define("BUILD_SHARED_LIBS", "OFF");
     config.define("CMAKE_BUILD_TYPE", "Release");
-    config.define("CMAKE_CXX_COMPILER", "/usr/bin/g++-4.8");
-    let proj = config.build();
 
     // Find and configure required dependencies
     let target = env::var("TARGET").unwrap();
+    if target.contains("linux") {
+        config.define("CMAKE_CXX_COMPILER", "/usr/bin/g++-4.8");
+    }
     if target.contains("apple") {
         println!("cargo:rustc-link-lib=dylib=c++");
     } else if target.contains("linux") {
@@ -153,6 +154,8 @@ fn main() {
     println!("cargo:rustc-link-lib=dylib=sqlite3");
     println!("cargo:rustc-link-lib=dylib=curl");
     println!("cargo:rustc-link-lib=dylib=tiff");
+
+    let proj = config.build();
     println!(
         "cargo:rustc-link-search=native={}",
         proj.join("lib").display()
