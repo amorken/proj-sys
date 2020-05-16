@@ -1,8 +1,6 @@
 language: rust
 
 dist: xenial
-compiler:
-  - gcc
 
 rust:
   - stable
@@ -20,7 +18,14 @@ env:
 jobs:
   include:
     - os: linux
-      env: PROJ_FEATURES="--features bundled_proj" CXX="g++ -D_GLIBCXX_USE_CXX11_ABI=0"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && PROJ_FEATURES=--features bundled_proj"
     - os: linux
       env: PROJ_FEATURES="--features pkg_config"
     - os: osx
