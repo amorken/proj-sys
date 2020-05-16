@@ -33,6 +33,8 @@ use std::path::PathBuf;
 ))]
 use tar::Archive;
 
+
+// Build using pkg-config
 #[cfg(all(
     feature = "pkg_config",
     not(feature = "bundled_proj"),
@@ -115,6 +117,8 @@ fn main() {
         .expect("Couldn't write bindings!");
 }
 
+
+// Build from included source
 #[cfg(all(
     not(feature = "pkg-config"),
     not(feature = "nobuild"),
@@ -122,13 +126,20 @@ fn main() {
 ))]
 fn main() {
     // Build PROJ from the included tar
-    // NOTE: The PROJ build expects Sqlite3 to be present on the system.
+    // NOTE: The PROJ build expects Sqlite3, curl, and tiff to be available
+    // See here: https://github.com/OSGeo/PROJ/blob/master/docs/source/install.rst#compilation-and-installation-from-source-code
     let path = "PROJSRC/proj-7.0.1.tar.gz";
     let tar_gz = File::open(path).expect("Couldn't open PROJ source tar");
     let tar = GzDecoder::new(tar_gz);
     let mut archive = Archive::new(tar);
     archive.unpack("PROJSRC/proj").expect("Couldn't unpack tar");
 
+    let mut config = cmake::Config::new("PROJSRC/proj/proj-7.0.1");
+    config.pic(true);
+    config.define("BUILD_SHARED_LIBS", "OFF");
+    let proj = config.build();
+
+    // Find and configure required dependencies
     let target = env::var("TARGET").unwrap();
     if target.contains("apple") {
         println!("cargo:rustc-link-lib=dylib=c++");
@@ -137,13 +148,6 @@ fn main() {
     } else {
         unimplemented!();
     }
-
-    let mut config = cmake::Config::new("PROJSRC/proj/proj-7.0.1");
-    config.pic(true);
-    config.define("BUILD_SHARED_LIBS", "OFF");
-    let proj = config.build();
-
-    // find required dependencies
     println!("cargo:rustc-link-lib=dylib=sqlite3");
     println!("cargo:rustc-link-lib=dylib=curl");
     println!("cargo:rustc-link-lib=dylib=tiff");
@@ -151,7 +155,7 @@ fn main() {
         "cargo:rustc-link-search=native={}",
         proj.join("lib").display()
     );
-    // Tell cargo to tell rustc to link PROJ.
+    // Tell cargo to tell rustc to link PROJ
     println!("cargo:rustc-link-lib=static=proj");
 
     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
