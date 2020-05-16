@@ -137,6 +137,8 @@ fn main() {
     config.pic(true);
     config.define("BUILD_SHARED_LIBS", "OFF");
     config.define("CMAKE_BUILD_TYPE", "Release");
+    config.define("CMAKE_CXX_COMPILER", "g++-7");
+    config.define("CMAKE_CXXFLAGS", "GLIBCXX_USE_CXX11_ABI=0");
     // if target.contains("linux") {
     //     config.define("CMAKE_CXX_COMPILER", env::var("CXX").unwrap());
     // }
