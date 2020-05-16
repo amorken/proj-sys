@@ -15,7 +15,7 @@ links = "proj"
 [build-dependencies]
 bindgen = "0.52.0"
 pkg-config = "0.3.17"
-cmake = "0.1"
+cmake = "0.1.43"
 flate2 = "1.0.14"
 tar = "0.4.26"
 

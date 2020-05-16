@@ -128,10 +128,25 @@ fn main() {
     let tar = GzDecoder::new(tar_gz);
     let mut archive = Archive::new(tar);
     archive.unpack("PROJSRC/proj").expect("Couldn't unpack tar");
+
+    let target = env::var("TARGET").unwrap();
+    if target.contains("apple") {
+        println!("cargo:rustc-link-lib=dylib=c++");
+    } else if target.contains("linux") {
+        println!("cargo:rustc-link-lib=dylib=stdc++");
+    } else {
+        unimplemented!();
+    }
+
     let mut config = cmake::Config::new("PROJSRC/proj/proj-7.0.1");
+    config.pic(true);
+    config.define("BUILD_SHARED_LIBS", "OFF");
     let proj = config.build();
 
-    // Tell cargo to tell rustc where to look for PROJ.
+    // find required dependencies
+    println!("cargo:rustc-link-lib=dylib=sqlite3");
+    println!("cargo:rustc-link-lib=dylib=curl");
+    println!("cargo:rustc-link-lib=dylib=tiff");
     println!(
         "cargo:rustc-link-search=native={}",
         proj.join("lib").display()
