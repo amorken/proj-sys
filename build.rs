@@ -146,9 +146,11 @@ fn main() {
     // }
 
     // Find and configure required dependencies
-    // if target.contains("apple") {
+    if target.contains("apple") {
         println!("cargo:rustc-link-lib=dylib=c++");
-    // }
+    } else if target.contains("linux") {
+        println!("cargo:rustc-link-lib=dylib=c++11");
+    }
     println!("cargo:rustc-link-lib=dylib=sqlite3");
     println!("cargo:rustc-link-lib=dylib=curl");
     println!("cargo:rustc-link-lib=dylib=tiff");
