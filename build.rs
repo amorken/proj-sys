@@ -146,9 +146,9 @@ fn main() {
     // }
 
     // Find and configure required dependencies
-    if target.contains("apple") {
+    // if target.contains("apple") {
         println!("cargo:rustc-link-lib=dylib=c++");
-    }
+    // }
     println!("cargo:rustc-link-lib=dylib=sqlite3");
     println!("cargo:rustc-link-lib=dylib=curl");
     println!("cargo:rustc-link-lib=dylib=tiff");
@@ -164,7 +164,7 @@ fn main() {
     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
     bindgen::builder()
         .header(proj.join("include").join("proj.h").to_str().unwrap())
-        .clang_arg("-std=c++")
+        // .clang_arg("-std=c++11")
         .clang_arg("-x")
         .clang_arg("c++")
         .trust_clang_mangling(false)
