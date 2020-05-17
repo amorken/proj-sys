@@ -164,7 +164,7 @@ fn main() {
     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
     bindgen::builder()
         .header(proj.join("include").join("proj.h").to_str().unwrap())
-        .clang_arg("-std=c++11")
+        .clang_arg("-std=c++")
         .clang_arg("-x")
         .clang_arg("c++")
         .trust_clang_mangling(false)
