@@ -146,16 +146,17 @@ fn main() {
     // }
 
     // Find and configure required dependencies
+    println!("cargo:rustc-link-lib=dylib=sqlite3");
+    println!("cargo:rustc-link-lib=dylib=curl");
+    println!("cargo:rustc-link-lib=dylib=tiff");
     if target.contains("apple") {
         println!("cargo:rustc-link-lib=dylib=c++");
     } else if target.contains("linux") {
         println!("cargo:rustc-link-lib=dylib=stdc++");
     }
-    println!("cargo:rustc-link-lib=dylib=sqlite3");
-    println!("cargo:rustc-link-lib=dylib=curl");
-    println!("cargo:rustc-link-lib=dylib=tiff");
-
     let proj = config.build();
+
+    // Link steps
     println!(
         "cargo:rustc-link-search=native={}",
         proj.join("lib").display()
@@ -166,9 +167,9 @@ fn main() {
     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
     bindgen::builder()
         .header(proj.join("include").join("proj.h").to_str().unwrap())
-        .clang_arg("-std=c++11")
         .clang_arg("-x")
         .clang_arg("c++")
+        .clang_arg("-std=c++11")
         .trust_clang_mangling(false)
         .blacklist_type("max_align_t")
         .generate()
