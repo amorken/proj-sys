@@ -29,7 +29,7 @@ env:
 jobs:
   include:
     - os: linux
-      env: CC=gcc-9 CXX=g++-9 CFLAGS="-no-pie" CXXFLAGS="-std=c++11" PROJ_FEATURES="--features bundled_proj"
+      env: CC=gcc-9 CXX=g++-9 CXXFLAGS="-std=c++11" PROJ_FEATURES="--features bundled_proj"
     - os: linux
       env: PROJ_FEATURES="--features pkg_config"
     - os: osx
@@ -58,6 +58,6 @@ before_install:
 script:
   - echo $CXX
   - g++ -dM -E -x c++  /dev/null | grep -F __cplusplus
-  - cargo test -v $PROJ_FEATURES
+  - cargo test -vv $PROJ_FEATURES
 
 cache: cargo
