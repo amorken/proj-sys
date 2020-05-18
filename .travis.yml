@@ -1,7 +1,6 @@
 language: rust
 
 dist: xenial
-compiler: clang
 
 rust:
   - stable
