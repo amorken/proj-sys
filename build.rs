@@ -134,26 +134,17 @@ fn main() {
 
     let target = env::var("TARGET").unwrap();
     let mut config = cmake::Config::new("PROJSRC/proj/proj-7.0.1");
-    config.define("BUILD_SHARED_LIBS", "OFF");
+    config.define("BUILD_SHARED_LIBS", "ON");
     config.define("BUILD_TESTING", "OFF");
     config.define("CMAKE_BUILD_TYPE", "Release");
-    // config.pic(true);
-    // config.define("CMAKE_C_FLAGS", "pic");
-    // config.define("CMAKE_CXX_FLAGS", "pic");
+    config.pic(true);
     config.define("CMAKE_CXX_FLAGS", "-std=c++11");
-    // if target.contains("linux") {
-    //     config.define("CMAKE_CXX_COMPILER", env::var("CXX").unwrap());
-    // }
-
     // Find and configure required dependencies
     println!("cargo:rustc-link-lib=dylib=sqlite3");
     println!("cargo:rustc-link-lib=dylib=curl");
     println!("cargo:rustc-link-lib=dylib=tiff");
     if target.contains("apple") {
         println!("cargo:rustc-link-lib=dylib=c++");
-    // THIS MAY BREAK WINDOWS IF WE EVER ENABLE IT
-    // } else {
-        // println!("cargo:rustc-link-lib=c++);
     }
     let proj = config.build();
 
