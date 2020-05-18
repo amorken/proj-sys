@@ -10,6 +10,10 @@ rust:
 
 os:
   - linux
+
+compiler:
+  - g++-9
+
 # by default, test vanilla setup on all three channels
 env:
   global:
@@ -24,8 +28,8 @@ jobs:
         sources:
           - ubuntu-toolchain-r-test
         packages:
-          - g++-7
-      env: CC=clang CXX=clang++ PROJ_FEATURES="--features bundled_proj"
+          - g++-9
+      env: CC=gcc-9 CXX=g++-9 PROJ_FEATURES="--features bundled_proj"
     - os: linux
       env: PROJ_FEATURES="--features pkg_config"
     - os: osx
@@ -36,9 +40,6 @@ jobs:
       env: PROJ_FEATURES="--features bundled_proj"
 
 before_install:
-  - which clang
-  - which clang++
-  - clang -v
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]  && [ "$PROJ_FEATURES" != "--features bundled_proj" ]; then
       sudo apt-get update
