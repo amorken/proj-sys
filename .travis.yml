@@ -57,6 +57,7 @@ before_install:
 
 script:
   - echo $CXX
+  - g++ -dM -E -x c++  /dev/null | grep -F __cplusplus
   - cargo test -v $PROJ_FEATURES
 
 cache: cargo
