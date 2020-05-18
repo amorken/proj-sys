@@ -19,6 +19,12 @@ env:
 jobs:
   include:
     - os: linux
+    addons:
+      apt:
+        sources:
+          - ubuntu-toolchain-r-test
+        packages:
+          - g++-7
       env: CC=clang CXX=clang++ PROJ_FEATURES="--features bundled_proj"
     - os: linux
       env: PROJ_FEATURES="--features pkg_config"
