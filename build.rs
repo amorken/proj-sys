@@ -140,7 +140,7 @@ fn main() {
     config.define("CMAKE_BUILD_TYPE", "Release");
     // config.define("CMAKE_CXX_COMPILER", "clang++-7");
     // config.define("CMAKE_C_FLAGS", "pic");
-    // config.define("CMAKE_CXX_FLAGS", "pic");
+    config.define("CMAKE_CXX_FLAGS", "-std=c++11");
     // if target.contains("linux") {
     //     config.define("CMAKE_CXX_COMPILER", env::var("CXX").unwrap());
     // }
@@ -152,8 +152,8 @@ fn main() {
     if target.contains("apple") {
         println!("cargo:rustc-link-lib=dylib=c++");
     // THIS MAY BREAK WINDOWS IF WE EVER ENABLE IT
-    } else {
-        println!("cargo:rustc-link-lib=c++11");
+    // } else {
+        // println!("cargo:rustc-link-lib=c++);
     }
     let proj = config.build();
 
