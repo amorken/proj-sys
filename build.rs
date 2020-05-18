@@ -153,7 +153,7 @@ fn main() {
         println!("cargo:rustc-link-lib=dylib=c++");
     // THIS MAY BREAK WINDOWS IF WE EVER ENABLE IT
     } else {
-        println!("cargo:rustc-link-lib=stdc++");
+        println!("cargo:rustc-link-lib=static=stdc++");
     }
     let proj = config.build();
 
