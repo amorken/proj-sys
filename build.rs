@@ -134,11 +134,10 @@ fn main() {
 
     let target = env::var("TARGET").unwrap();
     let mut config = cmake::Config::new("PROJSRC/proj/proj-7.0.1");
-    config.pic(true);
     config.define("BUILD_SHARED_LIBS", "OFF");
     config.define("BUILD_TESTING", "OFF");
     config.define("CMAKE_BUILD_TYPE", "Release");
-    // config.define("CMAKE_CXX_COMPILER", "clang++-7");
+    config.pic(true);
     config.define("CMAKE_C_FLAGS", "pic");
     config.define("CMAKE_CXX_FLAGS", "pic");
     config.define("CMAKE_CXX_FLAGS", "-std=c++11");
