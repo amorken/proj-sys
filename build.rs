@@ -138,6 +138,7 @@ fn main() {
     config.define("BUILD_TESTING", "OFF");
     config.define("CMAKE_BUILD_TYPE", "Release");
     config.define("CMAKE_CXX_FLAGS", "-std=c++11");
+    config.define("CMAKE_CXX_FLAGS", "PIC");
     // Find and configure required dependencies
     println!("cargo:rustc-link-lib=dylib=sqlite3");
     println!("cargo:rustc-link-lib=dylib=curl");
