@@ -10,6 +10,13 @@ rust:
 os:
   - linux
 
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-9
+
 compiler:
   - g++-9
 
@@ -22,12 +29,6 @@ env:
 jobs:
   include:
     - os: linux
-    addons:
-      apt:
-        sources:
-          - ubuntu-toolchain-r-test
-        packages:
-          - g++-9
       env: CC=gcc-9 CXX=g++-9 PROJ_FEATURES="--features bundled_proj"
     - os: linux
       env: PROJ_FEATURES="--features pkg_config"
