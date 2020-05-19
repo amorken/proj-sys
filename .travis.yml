@@ -16,6 +16,9 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-10
+      - libtiff-dev
+      - libcurl-dev
+      - libsqlite3-dev
 
 compiler:
   - g++-10
