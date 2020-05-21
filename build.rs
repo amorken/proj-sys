@@ -141,6 +141,7 @@ fn main() {
     if target.contains("apple") {
         println!("cargo:rustc-link-lib=dylib=c++");
     }
+    config.define("CMAKE_C_FLAGS", "CMAKE_VERBOSE_MAKEFILE:BOOL=ON");
     config.define("CMAKE_CXX_FLAGS", "-std=c++11");
     config.define("BUILD_SHARED_LIBS", "OFF");
     let proj = config.build();
