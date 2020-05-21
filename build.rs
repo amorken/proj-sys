@@ -138,7 +138,9 @@ fn main() {
     println!("cargo:rustc-link-lib=dylib=sqlite3");
     println!("cargo:rustc-link-lib=dylib=curl");
     println!("cargo:rustc-link-lib=dylib=tiff");
-    // println!("cargo:rustc-link-lib=dylib=stdc++");
+    if target.contains("linux") {
+        println!("cargo:rustc-link-lib=dylib=stdc++11");
+    }
     if target.contains("apple") {
         println!("cargo:rustc-link-lib=dylib=c++");
     }
