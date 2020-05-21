@@ -142,7 +142,7 @@ fn main() {
         println!("cargo:rustc-link-lib=dylib=c++");
     }
     config.define("CMAKE_CXX_FLAGS", "-std=c++11");
-    config.define("CMAKE_CXX_FLAGS", "PIC");
+    config.define("CMAKE_CXX_FLAGS", "-fPIC");
     config.define("BUILD_SHARED_LIBS", "OFF");
     config.very_verbose(true);
     let proj = config.build();
