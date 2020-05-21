@@ -141,9 +141,9 @@ fn main() {
     if target.contains("apple") {
         println!("cargo:rustc-link-lib=dylib=c++");
     }
-    config.define("CMAKE_C_FLAGS", "CMAKE_VERBOSE_MAKEFILE:BOOL=ON");
     config.define("CMAKE_CXX_FLAGS", "-std=c++11");
     config.define("BUILD_SHARED_LIBS", "OFF");
+    config.very_verbose(true);
     let proj = config.build();
     // readelf --relocs foo.o | egrep '(GOT|PLT|JU?MP_SLOT)'
     // readelf -d libMyLib1.so | grep TEXT
