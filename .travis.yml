@@ -59,14 +59,9 @@ before_install:
 
 script:
   - echo $CXX
-  - which g++
-  - g++ -v
   - g++-9 -v
-  - which ld
-  - ld -v
   - g++ -dM -E -x c++  /dev/null | grep -F __cplusplus
   - echo $LD_LIBRARY_PATH
-  - ls /usr/lib/gcc/x86_64-linux-gnu/9/
   - cargo test -vv $PROJ_FEATURES
 
 cache: cargo
