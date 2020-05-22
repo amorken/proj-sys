@@ -16,7 +16,6 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-9
-      - libstdc++9-dev
       - libtiff-dev
       - libsqlite3-dev
 
