@@ -16,8 +16,9 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-9
-      - libtiff-dev
+      - libtiff5-dev
       - libsqlite3-dev
+      - libcurl-dev
 
 compiler:
   - g++-9
@@ -65,9 +66,6 @@ script:
   - which ld
   - ld -v
   - g++ -dM -E -x c++  /dev/null | grep -F __cplusplus
-  - locate libtiff
-  - locate libcurl
-  - locate libsqlite3
   - echo $LD_LIBRARY_PATH
   - cargo test -vv $PROJ_FEATURES
 
