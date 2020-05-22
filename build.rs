@@ -140,7 +140,7 @@ fn main() {
     println!("cargo:rustc-link-lib=dylib=tiff");
     if target.contains("linux") {
         println!("cargo:rustc-link-search=/usr/lib/x86_64-linux-gnu");
-        println!("cargo:rustc-link-lib=stdc++");
+        println!("cargo:rustc-link-lib=static=stdc++");
     }
     if target.contains("apple") {
         println!("cargo:rustc-link-lib=dylib=c++");
