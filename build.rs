@@ -139,7 +139,8 @@ fn main() {
     println!("cargo:rustc-link-lib=dylib=curl");
     println!("cargo:rustc-link-lib=dylib=tiff");
     if target.contains("linux") {
-        println!("cargo:rustc-link-search=/usr/lib/x86_64-linux-gnu");
+        // println!("cargo:rustc-link-search=/usr/lib/x86_64-linux-gnu");
+        println!("cargo:rustc-link-search=/usr/lib/gcc/i686-linux-gnu/9/");
         println!("cargo:rustc-link-lib=stdc++");
     }
     if target.contains("apple") {
