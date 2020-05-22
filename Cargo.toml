@@ -24,8 +24,5 @@ nobuild = []
 pkg_config = []
 bundled_proj = []
 
-[target.'cfg(all(not(feature = "pkg_config"), feature = "bundled_proj", target_os = "linux", not(feature = "nobuild")))']
-rustflags = ["-C", "default-linker-libraries"]
-
 [package.metadata.docs.rs]
 features = [ "nobuild" ] # This feature will be enabled during the docs.rs build
