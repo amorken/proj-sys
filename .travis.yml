@@ -65,6 +65,7 @@ script:
   - which ld
   - ld -v
   - g++ -dM -E -x c++  /dev/null | grep -F __cplusplus
+  - locate libstdc
   - cargo test -vv $PROJ_FEATURES
 
 cache: cargo
