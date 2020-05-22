@@ -135,9 +135,9 @@ fn main() {
     let target = env::var("TARGET").unwrap();
     let mut config = cmake::Config::new("PROJSRC/proj/proj-7.0.1");
     // Find and configure required dependencies
-    println!("cargo:rustc-link-lib=dylib=sqlite3");
-    println!("cargo:rustc-link-lib=dylib=curl");
-    println!("cargo:rustc-link-lib=dylib=tiff");
+    println!("cargo:rustc-link-lib=static=sqlite3");
+    println!("cargo:rustc-link-lib=static=curl");
+    println!("cargo:rustc-link-lib=static=tiff");
     if target.contains("linux") {
         println!("cargo:rustc-link-search=/usr/lib/x86_64-linux-gnu");
         println!("cargo:rustc-link-lib=static=stdc++");

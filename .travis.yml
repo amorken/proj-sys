@@ -18,7 +18,6 @@ addons:
       - g++-9
       - libtiff5-dev
       - libsqlite3-dev
-      - libcurl-dev
 
 compiler:
   - g++-9
