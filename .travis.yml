@@ -60,6 +60,10 @@ before_install:
 
 script:
   - echo $CXX
+  - which g++
+  - g++ -v
+  - which ld
+  - ld -v
   - g++ -dM -E -x c++  /dev/null | grep -F __cplusplus
   - cargo test -vv $PROJ_FEATURES
 
