@@ -141,6 +141,7 @@ fn main() {
     if target.contains("linux") {
         // g++-9 c++11 stdlib
         println!("cargo:rustc-link-search=/usr/lib/gcc/x86_64-linux-gnu/9");
+        println!("cargo:rustc-flags=-l dylib=stdc++");
         println!("cargo:rustc-link-lib=stdc++");
     }
     if target.contains("apple") {
