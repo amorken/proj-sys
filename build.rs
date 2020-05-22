@@ -148,7 +148,7 @@ fn main() {
     println!("cargo:rustc-link-lib=dylib=curl");
     println!("cargo:rustc-link-lib=dylib=tiff");
     config.define("CMAKE_CXX_FLAGS", "-std=c++11");
-    // config.define("CMAKE_CXX_FLAGS", "-D_GLIBCXX_USE_CXX11_ABI=0");
+    config.define("CMAKE_CXX_FLAGS", "-D_GLIBCXX_USE_CXX11_ABI=0");
     config.define("CMAKE_CXX_FLAGS", "-fPIC");
     config.define("BUILD_SHARED_LIBS", "OFF");
     config.very_verbose(true);
