@@ -65,7 +65,9 @@ script:
   - which ld
   - ld -v
   - g++ -dM -E -x c++  /dev/null | grep -F __cplusplus
-  - locate libstdc
+  - locate libtiff
+  - locate libcurl
+  - locate libsqlite3
   - echo $LD_LIBRARY_PATH
   - cargo test -vv $PROJ_FEATURES
 
